@@ -1,7 +1,7 @@
 # User Maker
 
 ## Test specification
-https://github.com/Dandellion007/user_maker/blob/edc20f000c9a50c891d9ccf0cbdb6778a652d4c4/Test%20specification
+(test_specification)[https://github.com/Dandellion007/user_maker/blob/edc20f000c9a50c891d9ccf0cbdb6778a652d4c4/Test%20specification]
 
 ## Create Skill
 ```sh
