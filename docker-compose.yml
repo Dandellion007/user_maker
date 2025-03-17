@@ -1,0 +1,40 @@
+version: '3'
+services:
+  db:
+    image: postgres
+    container_name: user_maker-postgres
+    environment:
+      POSTGRES_DB: user_maker_db
+      POSTGRES_PASSWORD: test_pass
+    volumes:
+      - db:/var/lib/postgresql/data
+  user_maker-web:
+    build: .
+    image: user_maker-web
+    environment:
+      RAILS_ENV: development
+      DB_HOST: db
+      DB_NAME: user_maker_db
+      DB_USERNAME: postgres
+      DB_PASSWORD: test_pass
+    volumes:
+      - .:/app
+      - bundle:/bundle
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+  user_maker-web-test:
+    image: user_maker-web
+    entrypoint: ./entrypoints/docker-test-entrypoint.sh
+    environment:
+      RAILS_ENV: test
+      DB_NAME: user_maker_db_test
+    ports:
+      - "3010:3000"
+    volumes:
+      - .:/app
+
+volumes:
+  db: {}
+  bundle: {}
